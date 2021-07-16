@@ -1,0 +1,6 @@
+Flask
+line-bot-sdk
+pya3rt
+opencv-python-headless==4.4.0.46
+pydrive
+gunicorn
