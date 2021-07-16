@@ -39,25 +39,25 @@ def handle_message(event):
     messe = event.message.text
     
     if messe == "ちんぽ":
-        cap = cv2.VideoCapture(0)
+        #cap = cv2.VideoCapture(0)
        
-        ret, frame = cap.read()
+        #ret, frame = cap.read()
         #frame = cv2.resize(frame, dsize=(10, 10))
 
-        frame_gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        ret, frame_otsu = cv2.threshold(frame_gray, 0, 255, cv2.THRESH_OTSU)
+        #frame_gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        #ret, frame_otsu = cv2.threshold(frame_gray, 0, 255, cv2.THRESH_OTSU)
         #cv2.imshow("test",frame_otsu)
         #cv2.waitKey(20)
         #cv2.destroyAllWindows()
-        cap.release()
+        #cap.release()
         
         gauth = GoogleAuth()
         gauth.LocalWebserverAuth()
 
         drive = GoogleDrive(gauth)
         
-        if ret == True:
-            cv2.imwrite('gazo.jpg', frame_otsu)
+        #if ret == True:
+            #cv2.imwrite('gazo.jpg', frame_otsu)
         
         f = drive.CreateFile({'title': 'gazo.jpg', 'mimeType': 'image/jpeg'})
         f.SetContentFile('gazo.jpg')
