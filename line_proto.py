@@ -40,7 +40,7 @@ def handle_message(event):
     num : int = random.randint(0,2)
     messagelist.append(TextSendMessage(text=janken[num]))
 
-    with open('./data.json') as f:
+    with open('data.json') as f:
         json_data = json.load(f)
     
         if messe == "グー":
