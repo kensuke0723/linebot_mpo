@@ -30,6 +30,7 @@ def callback():
     return 'OK'
 
 janken : list = ["グー", "チョキ", "パー"]
+message : list = []
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
@@ -38,32 +39,33 @@ def handle_message(event):
 
     num : int = random.randint(0,2)
     line_hand = janken[num]
-    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=line_hand))
+    message.append(line_hand)
 
     if messe == "グー":
         if int == 0:
-            line_bot_api.push_message(TextSendMessage(text="DRAW"))
+            message.append("DRAW")
         elif int == 1:
-            line_bot_api.push_message(TextSendMessage(text="YOUR WIN"))
+            message.append("YOUR WIN")
         else:
-            line_bot_api.push_message(TextSendMessage(text="YOUR LOSE"))
+            message.append("YOUR LOSE")
     
     elif messe == "チョキ":
         if int == 0:
-            line_bot_api.push_message(TextSendMessage(text="YOUR LOSE"))
+            message.append("YOUR LOSE")
         elif int == 1:
-            line_bot_api.push_message(TextSendMessage(text="DRAW"))
+            message.append("DRAW")
         else:
-            line_bot_api.push_message(TextSendMessage(text="YOUR WIN"))
+            message.append("YOUR WIN")
 
     elif messe == "パー":
         if int == 0:
-            line_bot_api.push_message(TextSendMessage(text="YOUR WIN"))
+            message.append("YOUR WIN")
         elif int == 1:
-            line_bot_api.push_message(TextSendMessage(text="YOUR LOSE"))
+            message.append("YOUR LOSE")
         else:
-            line_bot_api.push_message(TextSendMessage(text="DRAW"))
+            message.append("DRAW")
 
+    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=message))
 
 
 if __name__ == '__main__':
