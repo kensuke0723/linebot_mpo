@@ -30,7 +30,7 @@ def callback():
     return 'OK'
 
 janken : list = ["グー", "チョキ", "パー"]
-message : list = []
+messagelist : list = []
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
@@ -39,36 +39,36 @@ def handle_message(event):
 
     num : int = random.randint(0,2)
     line_hand = janken[num]
-    message.append(line_hand)
+    messagelist.append(line_hand)
 
     if messe == "グー":
         if num == 0:
-            message.append("DRAW")
+            messagelist.append("DRAW")
         elif num == 1:
-            message.append("YOUR WIN")
+            messagelist.append("YOUR WIN")
         else:
-            message.append("YOUR LOSE")
+            messagelist.append("YOUR LOSE")
     
     elif messe == "チョキ":
         if num == 0:
-            message.append("YOUR LOSE")
+            messagelist.append("YOUR LOSE")
         elif num == 1:
-            message.append("DRAW")
+            messagelist.append("DRAW")
         else:
-            message.append("YOUR WIN")
+            messagelist.append("YOUR WIN")
 
     elif messe == "パー":
         if num == 0:
-            message.append("YOUR WIN")
+            messagelist.append("YOUR WIN")
         elif num == 1:
-            message.append("YOUR LOSE")
+            messagelist.append("YOUR LOSE")
         else:
-            message.append("DRAW")
+            messagelist.append("DRAW")
     
     else:
-        message.append("hanashi ni narimasen")
+        messagelist.append("hanashi ni narimasen")
 
-    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=message[1]))
+    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=messagelist[1]))
 
 
 
