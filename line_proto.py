@@ -67,8 +67,7 @@ def handle_message(event):
     else:
         messagelist.append("hanashi ni narimasen")
 
-    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=messagelist[0]))
-    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=messagelist[1]))
+    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=messagelist))
 
 
 
