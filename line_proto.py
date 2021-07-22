@@ -1,15 +1,12 @@
 from linebot import LineBotApi, WebhookHandler 
 from linebot.exceptions import InvalidSignatureError 
 from linebot.models import MessageEvent, TextMessage, ImageSendMessage  ,TextSendMessage
-import pya3rt 
+
+import random
 
 from flask import Flask, request, abort
 #from flask_ngrok import run_with_ngrok
 
-import cv2
-
-from pydrive.auth import GoogleAuth
-from pydrive.drive import GoogleDrive
 
 app = Flask(__name__)
 #run_with_ngrok(app)
@@ -32,39 +29,42 @@ def callback():
     
     return 'OK'
 
+janken : list = ["グー", "チョキ", "パー"]
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    
+    print('OK')
     messe = event.message.text
+
+    num : int = random.randint(0,2)
+    line_hand = janken[num]
+    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=line_hand))
+
+    if messe == "グー":
+        if int == 0:
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text="DRAW"))
+        elif int == 1:
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text="YOUR WIN"))
+        else:
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text="YOUR LOSE"))
     
-    if messe == "ちんぽ":
-        #cap = cv2.VideoCapture(0)
-       
-        #ret, frame = cap.read()
-        #frame = cv2.resize(frame, dsize=(10, 10))
+    elif messe == "チョキ":
+        if int == 0:
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text="YOUR LOSE"))
+        elif int == 1:
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text="DRAW"))
+        else:
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text="YOUR WIN"))
 
-        #frame_gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        #ret, frame_otsu = cv2.threshold(frame_gray, 0, 255, cv2.THRESH_OTSU)
-        #cv2.imshow("test",frame_otsu)
-        #cv2.waitKey(20)
-        #cv2.destroyAllWindows()
-        #cap.release()
-        
-        gauth = GoogleAuth()
-        gauth.LocalWebserverAuth()
+    elif messe == "パー":
+        if int == 0:
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text="YOUR WIN"))
+        elif int == 1:
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text="YOUR LOSE"))
+        else:
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text="DRAW"))
 
-        drive = GoogleDrive(gauth)
-        
-        #if ret == True:
-            #cv2.imwrite('gazo.jpg', frame_otsu)
-        
-        f = drive.CreateFile({'title': 'gazo.jpg', 'mimeType': 'image/jpeg'})
-        f.SetContentFile('gazo.jpg')
-        f.Upload()
-        url = 'https://drive.google.com/uc?export=view&id=' + f['id']
-        #url = 'https://drive.google.com/file/d/1C3y2Dz316dXSSc5fmTDxZNVkB9mpRViJ/view?usp=sharing'    
-        line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url=url, preview_image_url=url))
+
 
 if __name__ == '__main__':
 
