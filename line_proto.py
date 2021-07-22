@@ -12,11 +12,9 @@ from flask import Flask, request, abort
 app = Flask(__name__)
 #run_with_ngrok(app)
 
-line_bot_api = LineBotApi("5+03IhNq5ERf1hywUdvcgUgLb33nFRyCwT5cZ+TvEAKx8ymCnAHz/Mbbz\
-pUQPr5y/TDD+0dQOGp+RJz6cE8cm6sfDUssEDG49aD0V6iHDbZDGcVI/qGrpKejMDBGSeHQ5loYaQicY5DL\
-5eSDh7wVrwdB04t89/1O/w1cDnyilFU=")
+line_bot_api = LineBotApi("y4HvuUcycFtqu9sKvTDcIVqNlqFA+LFC/eIBWZJ2vG/0V6BDRFlYCCw/tnf2jguNiWauaVLfJs6TBSrxF57b+jhYiIGoGmE+iy8wBtc2sUGAKsAWy33CYkqztkK9+6i4EB+1f8bsDMjwMruN01WnUgdB04t89/1O/w1cDnyilFU=")
 
-handler = WebhookHandler("d033ce60910936f714c504a807b0aab5")
+handler = WebhookHandler("cc2a636c27b60f6cc54e758793b46e81")
 
 @app.route("/callback", methods=['POST'])
 def callback():
