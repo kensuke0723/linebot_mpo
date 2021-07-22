@@ -3,6 +3,7 @@ from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, ImageSendMessage  ,TextSendMessage
 
 import random
+import json
 
 from flask import Flask, request, abort
 #from flask_ngrok import run_with_ngrok
@@ -39,34 +40,59 @@ def handle_message(event):
     num : int = random.randint(0,2)
     messagelist.append(TextSendMessage(text=janken[num]))
 
-    if messe == "グー":
-        if num == 0:
-            messagelist.append(TextSendMessage(text="DRAW"))
-        elif num == 1:
-            messagelist.append(TextSendMessage(text="YOUR WIN"))
-        else:
-            messagelist.append(TextSendMessage(text="YOUR LOSE"))
+    with open('./data.json') as f:
+        json_data = json.load(f)
     
-    elif messe == "チョキ":
-        if num == 0:
-            messagelist.append(TextSendMessage(text="YOUR LOSE"))
-        elif num == 1:
-            messagelist.append(TextSendMessage(text="DRAW"))
-        else:
-            messagelist.append(TextSendMessage(text="YOUR WIN"))
+        if messe == "グー":
+            if num == 0:
+                messagelist.append(TextSendMessage(text="DRAW"))
+            elif num == 1:
+                messagelist.append(TextSendMessage(text="YOUR WIN"))
+                messagelist.append(TextSendMessage(text=random.choice(json_data["person"])))
+                messagelist.append(TextSendMessage(text=random.choice(json_data["part"])))
+                messagelist.append(TextSendMessage(text="まポリン様、勝利回数は"+ str(json_data["syouri"][0])))
+                json_data["syouri"][0] =+ 1
+            else:
+                messagelist.append(TextSendMessage(text="YOUR LOSE"))
+                json_data["syouri"][1] =+ 1
+                messagelist.append(TextSendMessage(text="まポリン様、敗北回数は"+ str(json_data["syouri"][1])))
+        
+        elif messe == "チョキ":
+            if num == 0:
+                messagelist.append(TextSendMessage(text="YOUR LOSE"))
+                json_data["syouri"][1] =+ 1
+                messagelist.append(TextSendMessage(text="まポリン様、敗北回数は"+ str(json_data["syouri"][1])))
+            elif num == 1:
+                messagelist.append(TextSendMessage(text="DRAW"))
+            else:
+                messagelist.append(TextSendMessage(text="YOUR WIN"))
+                messagelist.append(TextSendMessage(text=random.choice(json_data["person"])))
+                messagelist.append(TextSendMessage(text=random.choice(json_data["part"])))
+                json_data["syouri"][0] =+ 1
+                messagelist.append(TextSendMessage(text="まポリン様、勝利回数は"+ str(json_data["syouri"][0])))
 
-    elif messe == "パー":
-        if num == 0:
-            messagelist.append(TextSendMessage(text="YOUR WIN"))
-        elif num == 1:
-            messagelist.append(TextSendMessage(text="YOUR LOSE"))
+        elif messe == "パー":
+            if num == 0:
+                messagelist.append(TextSendMessage(text="YOUR WIN"))
+                json_data["syouri"][0] =+ 1
+                messagelist.append(TextSendMessage(text=random.choice(json_data["person"])))
+                messagelist.append(TextSendMessage(text=random.choice(json_data["part"])))
+                messagelist.append(TextSendMessage(text="まポリン様、勝利回数は"+ str(json_data["syouri"][0])))
+            elif num == 1:
+                messagelist.append(TextSendMessage(text="YOUR LOSE"))
+                json_data["syouri"][1] =+ 1
+                messagelist.append(TextSendMessage(text="まポリン様、敗北回数は"+ str(json_data["syouri"][1])))
+            else:
+                messagelist.append(TextSendMessage(text="DRAW"))
+        
         else:
-            messagelist.append(TextSendMessage(text="DRAW"))
-    
-    else:
-        messagelist.append("hanashi ni narimasen")
+            messagelist.append("hanashi ni narimasen")
 
-    line_bot_api.reply_message(event.reply_token, messagelist)
+        line_bot_api.reply_message(event.reply_token, messagelist)
+
+        f.write(json.dumps(json_data))
+        f.close
+
 
 
 
