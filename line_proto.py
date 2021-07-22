@@ -65,7 +65,8 @@ def handle_message(event):
         else:
             message.append("DRAW")
 
-    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=message))
+    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=message[0]))
+    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=message[1]))
 
 
 if __name__ == '__main__':
