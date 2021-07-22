@@ -42,25 +42,25 @@ def handle_message(event):
     message.append(line_hand)
 
     if messe == "グー":
-        if int == 0:
+        if num == 0:
             message.append("DRAW")
-        elif int == 1:
+        elif num == 1:
             message.append("YOUR WIN")
         else:
             message.append("YOUR LOSE")
     
     elif messe == "チョキ":
-        if int == 0:
+        if num == 0:
             message.append("YOUR LOSE")
-        elif int == 1:
+        elif num == 1:
             message.append("DRAW")
         else:
             message.append("YOUR WIN")
 
     elif messe == "パー":
-        if int == 0:
+        if num == 0:
             message.append("YOUR WIN")
-        elif int == 1:
+        elif num == 1:
             message.append("YOUR LOSE")
         else:
             message.append("DRAW")
