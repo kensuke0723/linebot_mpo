@@ -42,27 +42,27 @@ def handle_message(event):
 
     if messe == "グー":
         if int == 0:
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(text="DRAW"))
+            line_bot_api.push_message(TextSendMessage(text="DRAW"))
         elif int == 1:
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(text="YOUR WIN"))
+            line_bot_api.push_message(TextSendMessage(text="YOUR WIN"))
         else:
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(text="YOUR LOSE"))
+            line_bot_api.push_message(TextSendMessage(text="YOUR LOSE"))
     
     elif messe == "チョキ":
         if int == 0:
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(text="YOUR LOSE"))
+            line_bot_api.push_message(TextSendMessage(text="YOUR LOSE"))
         elif int == 1:
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(text="DRAW"))
+            line_bot_api.push_message(TextSendMessage(text="DRAW"))
         else:
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(text="YOUR WIN"))
+            line_bot_api.push_message(TextSendMessage(text="YOUR WIN"))
 
     elif messe == "パー":
         if int == 0:
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(text="YOUR WIN"))
+            line_bot_api.push_message(TextSendMessage(text="YOUR WIN"))
         elif int == 1:
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(text="YOUR LOSE"))
+            line_bot_api.push_message(TextSendMessage(text="YOUR LOSE"))
         else:
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(text="DRAW"))
+            line_bot_api.push_message(TextSendMessage(text="DRAW"))
 
 
 
