@@ -1,3 +1,4 @@
+from typing import Any
 from linebot import LineBotApi, WebhookHandler 
 from linebot.exceptions import InvalidSignatureError 
 from linebot.models import MessageEvent, TextMessage, ImageSendMessage  ,TextSendMessage, TemplateSendMessage,ButtonsTemplate,URIAction
@@ -35,7 +36,7 @@ def handle_message(event):
     messe = event.message.text
 
     num : int = random.randint(0,2)
-    messagelist : list = []
+    messagelist : any = []
     messagelist.append(TextSendMessage(text=janken[num]))
 
 
@@ -78,31 +79,31 @@ def handle_message(event):
             if num == 0:
                 messagelist.append(TextSendMessage(text="DRAW"))
             elif num == 1:
-                messagelist.append(TextSendMessage(text="YOUR WIN !!!!!!!!!"))
-                messagelist.append(win_messe)
+                #messagelist.append(TextSendMessage(text="YOUR WIN !!!!!!!!!"))
+                #messagelist.append(win_messe)
                 messagelist.append(message_template_win)
             else:
-                messagelist.append(TextSendMessage(text="YOUR LOSE"))
+                #messagelist.append(TextSendMessage(text="YOUR LOSE"))
                 messagelist.append(message_template_lose)
         
         elif messe == "チョキ":
             if num == 0:
-                messagelist.append(TextSendMessage(text="L O S E"))
+                #messagelist.append(TextSendMessage(text="L O S E"))
                 messagelist.append(message_template_lose)
             elif num == 1:
                 messagelist.append(TextSendMessage(text="DRAW"))
             else:
-                messagelist.append(TextSendMessage(text="YOUR WIN !!!!!!!!"))
-                messagelist.append(win_messe)
+                #messagelist.append(TextSendMessage(text="YOUR WIN !!!!!!!!"))
+                #messagelist.append(win_messe)
                 messagelist.append(message_template_win)
 
         elif messe == "パー":
             if num == 0:
-                messagelist.append(TextSendMessage(text="おめでとうございます !!!!!!!!"))
-                messagelist.append(win_messe)
+                #messagelist.append(TextSendMessage(text="おめでとうございます !!!!!!!!"))
+                #messagelist.append(win_messe)
                 messagelist.append(message_template_win)
             elif num == 1:
-                messagelist.append(TextSendMessage(text="まぽりんさんは敗北しました。"))
+                #messagelist.append(TextSendMessage(text="まぽりんさんは敗北しました。"))
                 messagelist.append(message_template_lose)
             else:
                 messagelist.append(TextSendMessage(text="DRAW"))
