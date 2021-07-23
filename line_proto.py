@@ -49,10 +49,10 @@ def handle_message(event):
             text=win_messe,
             title="WIN",
             image_size="cover",
-            thumbnail_image_url="https://任意の画像URL.jpg",
+            thumbnail_image_url="https://image.brush-stock.com/img/vewosp000004.jpg",
             actions=[
                 URIAction(
-                    uri="https://任意のページURL",
+                    uri="https://yama3394145.hatenablog.com/",
                     label="URIアクションのLABEL"
                 )
             ]
@@ -64,10 +64,10 @@ def handle_message(event):
             text=win_messe,
             title="L O S E",
             image_size="cover",
-            thumbnail_image_url="https://任意の画像URL.jpg",
+            thumbnail_image_url="https://kakijun.jp/gif-mini/1211200-m.gif",
             actions=[
                 URIAction(
-                    uri="https://任意のページURL",
+                    uri="https://yama3394145.hatenablog.com/",
                     label="URIアクションのLABEL"
                 )
             ]
