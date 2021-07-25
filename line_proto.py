@@ -79,7 +79,8 @@ def handle_message(event):
             if num == 0:
                 messagelist.append(TextSendMessage(text="DRAW"))
             elif num == 1:
-                #messagelist.append(TextSendMessage(text="YOUR WIN !!!!!!!!!"))
+                #kl
+                # messagelist.append(TextSendMessage(text="YOUR WIN !!!!!!!!!"))
                 #messagelist.append(win_messe)
                 messagelist.append(message_template_win)
             else:
@@ -111,7 +112,7 @@ def handle_message(event):
         else:
             messagelist.append("hanashi ni narimasen")
 
-        line_bot_api.reply_message(event.reply_token, messagelist)
+        line_bot_api.reply_message(event.reply_token, message_template_win)
 
         f.write(json.dumps(json_data))
         f.close
