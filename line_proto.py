@@ -112,7 +112,7 @@ def handle_message(event):
         else:
             messagelist.append("hanashi ni narimasen")
 
-        line_bot_api.reply_message(event.reply_token, message_template_win)
+        line_bot_api.push_message(event.reply_token, message_template_win)
 
         f.write(json.dumps(json_data))
         f.close
